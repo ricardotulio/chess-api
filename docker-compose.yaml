@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  node:
+    image: node:7.5-alpine
+    volumes:
+      - ./:/code
+    working_dir: /code
+    entrypoint: /usr/local/bin/node
+
+  yarn:
+    build: ./build/yarn/
+    volumes:
+      - ./:/code
+    working_dir: /code
+    entrypoint: /usr/local/bin/yarn
