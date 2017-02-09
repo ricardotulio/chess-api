@@ -9,7 +9,7 @@ services:
     entrypoint: /usr/local/bin/node
 
   yarn:
-    build: ./build/yarn/
+    image: yarn
     volumes:
       - ./:/code
     working_dir: /code

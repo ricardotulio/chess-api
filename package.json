@@ -1,4 +1,6 @@
 {
+  "name": "ChessAPI",
+  "version": "0.1.0",
   "homepage": "https://github.com/ricardotulio/chess-api",
   "repository": "github:ricardotulio/chess-api",
   "author": {
@@ -15,15 +17,22 @@
     "babel-preset-env": "^1.1.8",
     "babel-preset-es2015": "^6.22.0",
     "babel-register": "^6.22.0",
-    "mocha": "^3.2.0",
     "chai": "^3.5.0",
+    "cucumber": "latest",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
     "istanbul": "^1.0.0-alpha",
-    "istanbul-coveralls": "^1.0.3"
+    "istanbul-coveralls": "^1.0.3",
+    "mocha": "^3.2.0"
   },
   "scripts": {
-    "build": "babel src --out-dir build",
     "watch": "babel src --watch --out-dir build",
-    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register",
-    "coverage": "istanbul cover _mocha -- --recursive --require babel-polyfill --compilers js:babel-register && istanbul-coveralls && rm -rf ./coverage"
+    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register test/**",
+    "cucumber": "node ./node_modules/.bin/cucumber --compiler js:babel-register",
+    "coverage": "istanbul cover _mocha -- --recursive --require babel-polyfill --compilers js:babel-register && istanbul-coveralls && rm -rf ./coverage",
+    "lint": "eslint src/**",
+    "build": "yarn lint && yarn test && babel src --out-dir build",
+    "run": "node build/app.js"
   }
 }

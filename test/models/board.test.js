@@ -1,7 +1,5 @@
-'use strict';
-
-const assert = require('assert');
-import { Board } from '../../src/models/board';
+import * as assert from 'assert';
+import Board from '../../src/models/board';
 
 describe('Board', function() {
   const board = new Board();
