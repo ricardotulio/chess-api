@@ -1,6 +1,8 @@
 'use strict';
 
 export class Board {
-    construct() {
+    constructor() {
+        this.cols = 8;
+        this.rows = 8;
     }
 }

@@ -1,6 +1,6 @@
 'use strict';
 
-import { chai } from 'chai';
+const assert = require('assert');
 import { Board } from '../../src/models/board';
 
 describe('Board', function() {
@@ -12,9 +12,5 @@ describe('Board', function() {
 
   it('must have 8 rows', function() {
     assert.equal(8, board.rows);
-  });
-
-  it('must have 64 squares', function() {
-    assert.equal(64, board.squares.length);
   });
 });
