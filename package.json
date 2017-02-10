@@ -32,7 +32,7 @@
     "cucumber": "node ./node_modules/.bin/cucumber --compiler js:babel-register",
     "coverage": "istanbul cover _mocha -- --recursive --require babel-polyfill --compilers js:babel-register && istanbul-coveralls && rm -rf ./coverage",
     "lint": "eslint src/**",
-    "build": "yarn lint && yarn test && babel src --out-dir build",
+    "build": "yarn lint && yarn test && babel src --out-dir dist",
     "run": "node build/app.js"
   }
 }
