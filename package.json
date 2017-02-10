@@ -27,12 +27,8 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "watch": "babel src --watch --out-dir build",
-    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register test/**",
-    "cucumber": "node ./node_modules/.bin/cucumber --compiler js:babel-register",
-    "coverage": "istanbul cover _mocha -- --recursive --require babel-polyfill --compilers js:babel-register && istanbul-coveralls && rm -rf ./coverage",
-    "lint": "eslint src/**",
-    "build": "yarn lint && yarn test && babel src --out-dir dist",
-    "run": "node build/app.js"
+    "start": "node dist/app.js",
+    "build": "babel src --out-dir dist",
+    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register test/** && node ./node_modules/.bin/cucumber --compiler js:babel-register"
   }
 }

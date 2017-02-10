@@ -1,38 +1,25 @@
 import { defineSupportCode } from 'cucumber';
 import assert from 'assert';
-import Player from '../../src/models/player';
-import Invite from '../../src/models/invite';
-import InviteService from '../../src/services/invite';
+import { buildPlayer } from '../../src/models/player';
+import { buildInvite } from '../../src/models/invite';
 
 defineSupportCode(function({Given, When, Then}) {
-  const newInvite = new Invite();
-  let playerOne
-    , playerTwo;
+  let from
+    , to
+    , invite;
 
-  Given('a player named {name}', function(name) {
-    playerOne = new Player()
-      .withID(1)
-      .withName(name);
-
-    newInvite.from(playerOne);
+  Given('a player named {from}', function(name) {
+    playerOne = buildPlayer(1, name);
   });
 
   Given('another player named {name}', function(name) {
-    playerTwo = new Player()
-      .withID(2)
-      .withName(name);
-
-    newInvite.to(playerTwo);
-    console.log(newInvite);
+    playerTwo = buildPlayer(2, name);
   });
 
-  When('{playerOne} invite {playerTwo}', function(playerOne, playerTwo) {
-    InviteService.create(newInvite);
+  When('{nameOne} invite {nameTwo}', function(fromName, toName) {
+    invite = buildInvite(from, to);
   });
 
   Then('{playerTwo} must receive the invite', function(playerTwo) {
-    const invite = InviteService.find({to: playerTwo});
-    assert.equal(invite.from().getID, 1);
-    assert.equal(invite.to().getID, 2);
   });
 });

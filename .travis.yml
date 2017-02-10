@@ -7,4 +7,6 @@ before_install:
 install:
   - yarn
 script:
-  - yarn coverage
+  - yarn test
+  - eslint src/**
+  - istanbul cover _mocha -- --recursive --require babel-polyfill --compilers js:babel-register && istanbul-coveralls && rm -rf ./coverage
