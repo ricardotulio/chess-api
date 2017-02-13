@@ -9,7 +9,8 @@
   },
   "main": "src/app.js",
   "dependencies": {
-    "express": "^4.14.1"
+    "express": "^4.14.1",
+    "ramda": "^0.23.0"
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -29,6 +30,6 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "babel src --out-dir dist",
-    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register test/** && node ./node_modules/.bin/cucumber --compiler js:babel-register"
+    "test": "mocha --recursive --require babel-polyfill --compilers js:babel-register test/**/*.test.js && node ./node_modules/.bin/cucumber --compiler js:babel-register"
   }
 }
