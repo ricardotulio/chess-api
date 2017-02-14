@@ -1,16 +1,9 @@
 'use strict';
 
-var _express = require('express');
+var _server = require('./http/server');
 
-var _express2 = _interopRequireDefault(_express);
-
-var _router = require('./http/router');
-
-var _routes = require('./config/routes');
+var _server2 = _interopRequireDefault(_server);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var app = (0, _express2.default)();
-(0, _router.mapRoutes)(app, _routes.routes);
-
-app.listen(80);
+_server2.default.listen(80);

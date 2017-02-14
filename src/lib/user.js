@@ -1,7 +1,7 @@
-import R from 'ramda'
-
-export const buildUser = R.curry((username, password) => ({
+const buildUser = (username, password) => ({
   type: 'User',
-  username: username,
-  password: password
-}))
+  username,
+  password,
+})
+
+export default buildUser

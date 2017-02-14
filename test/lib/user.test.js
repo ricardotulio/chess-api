@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { buildUser } from '../../src/lib/user'
+import buildUser from '../../src/lib/user'
 
 describe('User lib', () => {
   it('Must build user', () => {

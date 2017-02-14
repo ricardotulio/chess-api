@@ -3,16 +3,17 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.mapRoutes = undefined;
 
-var _ramda = require('ramda');
+var _routes = require('../config/routes');
 
-var _ramda2 = _interopRequireDefault(_ramda);
+var _routes2 = _interopRequireDefault(_routes);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mapRoutes = exports.mapRoutes = _ramda2.default.curry(function (app, routes) {
-  routes.map(function (route) {
-    app[route.method](route.path, route.callback);
+var mapRoutes = function mapRoutes(app) {
+  _routes2.default.map(function (route) {
+    return app[route.method](route.path, route.callback);
   });
-});
+};
+
+exports.default = mapRoutes;

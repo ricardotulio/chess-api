@@ -1,8 +1,3 @@
-import express from 'express'
-import { mapRoutes } from './http/router'
-import { routes } from './config/routes'
+import server from './http/server'
 
-const app = express()
-mapRoutes(app, routes)
-
-app.listen(80)
+server.listen(80)

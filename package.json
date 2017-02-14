@@ -9,6 +9,7 @@
   },
   "main": "src/app.js",
   "dependencies": {
+    "body-parser": "^1.16.1",
     "express": "^4.14.1",
     "ramda": "^0.23.0"
   },

@@ -6,5 +6,8 @@ module.exports = {
     "env": {
       "node": true
     },
-    "root": true
+    "root": true,
+    "rules": {
+        "semi": [2, "never"]
+    }
 };

@@ -1,5 +1,5 @@
 import assert from 'assert'
-import { buildInvite } from '../../src/lib/invite'
+import buildInvite from '../../src/lib/invite'
 
 describe('Invite lib', () => {
   it('Must build invite', () => {

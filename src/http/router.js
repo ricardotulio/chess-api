@@ -1,7 +1,7 @@
-import R from 'ramda'
+import routes from '../config/routes'
 
-export const mapRoutes = R.curry((app, routes) => {
-  routes.map((route) => {
-    app[route.method](route.path, route.callback)
-  })
-})
+const mapRoutes = (app) => {
+  routes.map(route => app[route.method](route.path, route.callback))
+}
+
+export default mapRoutes

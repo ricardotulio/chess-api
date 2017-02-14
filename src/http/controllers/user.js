@@ -1,14 +1,12 @@
 const get = (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({"id": 1, "username": "john.snow", "password": "123456", "createdAt": "14/06/1991", "updatedAt": "14/06/1991"}))
+  res.send({"id": 1, "username": "john.snow", "createdAt": "121513251515", "updatedAt": "31561681525"})
 }
 
 const post = (req, res) => {
-  res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify({"id": 1, "username": "john.snow", "password": "123456", "createdAt": "14/06/1991", "updatedAt": "14/06/1991"}))
+  res.send({"id": 1, "username": req.body.username, "password": req.body.password, "createdAt": "121513251515", "updatedAt": "31561681525"})
 }
 
 export default {
-  get: get,
-  post: post
+  get,
+  post,
 }

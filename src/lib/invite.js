@@ -1,5 +1,7 @@
-export const buildInvite = (from, to) => ({
+const buildInvite = (from, to) => ({
   type: 'Invite',
-  from: from,
-  to: to
+  from,
+  to,
 })
+
+export default buildInvite

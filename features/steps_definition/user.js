@@ -2,9 +2,14 @@ import { defineSupportCode } from 'cucumber'
 import { assert } from 'chai'
 import http from 'http'
 import querystring from 'querystring'
+import server from '../../src/http/server';
 
-defineSupportCode(({Given, When, Then}) => {
+defineSupportCode(({Before, After, Given, When, Then}) => {
   let user = {}
+
+  Before(() => {
+    server.listen(8888)
+  })
 
   Given('a username {username}', (username) => {
     user.username = username
@@ -18,8 +23,8 @@ defineSupportCode(({Given, When, Then}) => {
     const postData = querystring.stringify(user)
 
     const options = {
-      hostname: '172.24.0.2',
-      port: 80,
+      hostname: 'localhost',
+      port: 8888,
       path: '/user',
       method: 'POST',
       headers: {
@@ -50,8 +55,8 @@ defineSupportCode(({Given, When, Then}) => {
 
   Then('the new account must be created', (done) => {
     const options = {
-      hostname: '172.24.0.2',
-      port: 80,
+      hostname: 'localhost',
+      port: 8888,
       path: '/user/' + user.id,
       method: 'GET',
     }
@@ -72,5 +77,8 @@ defineSupportCode(({Given, When, Then}) => {
     })
 
     req.end()
+  })
+
+  After(() => {
   })
 })
