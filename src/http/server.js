@@ -1,11 +1,11 @@
 import express from 'express'
-import mapRoutes from './router'
 import bodyParser from 'body-parser'
+import mapRoutes from './router'
 
 const server = express()
 
 server.use(bodyParser.json())
-server.use(bodyParser.urlencoded({extended: true}))
+server.use(bodyParser.urlencoded({ extended: true }))
 server.use((req, res, next) => {
   res.header('Content-Type', 'application/json')
   res.header('Access-Control-Allol-Origin', '*')
