@@ -8,6 +8,4 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var HTTP_PORT = process.env.HTTP_PORT || 8888;
 
-_server2.default.listen(HTTP_PORT, function () {
-  console.log('Listing on port ' + HTTP_PORT);
-});
+_server2.default.listen(HTTP_PORT);

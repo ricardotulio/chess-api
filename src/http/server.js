@@ -24,10 +24,11 @@ const listen = (port, callback = () => {}) => {
   const options = { promiseLibrary: bluebird }
 
   mongoose.connect(uri, options)
-    .then(() => {
-      mapRoutes(server)
-      server.listen(port, callback)
-    })
+
+  mongoose.connection.on('open', () => {
+    mapRoutes(server)
+    server.listen(port, callback)
+  })
 }
 
 export default {
