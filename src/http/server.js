@@ -4,10 +4,10 @@ import mongoose from 'mongoose'
 import bluebird from 'bluebird'
 import mapRoutes from './router'
 
-const MONGO_HOST = process.env.MONGO_HOST || 'mongo'
-const MONGO_PORT = process.env.MONGO_PORT || 27017
-const MONGO_USER = process.env.MONGO_USER || 'chess'
-const MONGO_PASS = process.env.MONGO_PASS || 'chess'
+const MONGODB_HOST = process.env.MONGODB_HOST || 'mongo'
+const MONGODB_PORT = process.env.MONGODB_PORT || 27017
+const MONGODB_USER = process.env.MONGODB_USER || 'chess'
+const MONGODB_PASS = process.env.MONGODB_PASS || 'chess'
 
 const server = express()
 
@@ -22,7 +22,7 @@ server.use((req, res, next) => {
 })
 
 const listen = (port, callback = () => {}) => {
-  const uri = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}:${MONGO_PORT}/chess`
+  const uri = `mongodb://${MONGODB_USER}:${MONGODB_PASS}@${MONGODB_HOST}:${MONGODB_PORT}/chess`
   const options = { promiseLibrary: bluebird }
 
   mongoose.connect(uri, options)
