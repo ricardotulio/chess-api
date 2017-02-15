@@ -14,3 +14,7 @@ services:
       - ./:/code
     working_dir: /code
     entrypoint: /usr/local/bin/yarn
+
+  mongo:
+    image: mongo
+

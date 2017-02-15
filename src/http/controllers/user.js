@@ -1,9 +1,22 @@
+import mongoose from 'mongoose'
+import User from '../../database/models/user'
+
 const get = (req, res) => {
-  res.send({})
+  User.findById(req.params.userId)
+    .then((user) => {
+      res.send(user)
+    })
 }
 
 const post = (req, res) => {
-  res.send({})
+  const user = new User()
+  user.username = req.body.username
+  user.password = req.body.password
+
+  user.save()
+    .then(() => {
+      res.send(user)
+    })
 }
 
 export default {

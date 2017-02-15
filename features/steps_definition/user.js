@@ -5,10 +5,13 @@ import querystring from 'querystring'
 import server from '../../src/http/server';
 
 defineSupportCode(({Before, After, Given, When, Then}) => {
+  const HTTP_PORT = process.env.HTTP_PORT || 8888
   let user = {}
 
-  Before(() => {
-    server.listen(8888)
+  Before((scenarioResult, done) => {
+    server.listen(HTTP_PORT, () => {
+      done()
+    })
   })
 
   Given('a username {username}', (username) => {
@@ -24,7 +27,7 @@ defineSupportCode(({Before, After, Given, When, Then}) => {
 
     const options = {
       hostname: 'localhost',
-      port: 8888,
+      port: HTTP_PORT,
       path: '/user',
       method: 'POST',
       headers: {
@@ -39,12 +42,12 @@ defineSupportCode(({Before, After, Given, When, Then}) => {
       res.setEncoding('utf8')
       res.on('data', (data) => {
         data = JSON.parse(data)
-        assert.isDefined(data.id)
+        assert.isDefined(data._id)
         assert.isDefined(data.createdAt)
         assert.isDefined(data.updatedAt)
         assert.equal(data.username, user.username)
 
-        user.id = data.id;
+        user = data;
 
         done()
       })
@@ -56,8 +59,8 @@ defineSupportCode(({Before, After, Given, When, Then}) => {
   Then('the new account must be created', (done) => {
     const options = {
       hostname: 'localhost',
-      port: 8888,
-      path: '/user/' + user.id,
+      port: HTTP_PORT,
+      path: '/user/' + user._id,
       method: 'GET',
     }
 
@@ -67,10 +70,10 @@ defineSupportCode(({Before, After, Given, When, Then}) => {
       res.setEncoding('utf8')
       res.on('data', (data) => {
         data = JSON.parse(data)
-        assert.isDefined(data.id)
-        assert.isDefined(data.createdAt)
-        assert.isDefined(data.updatedAt)
-        assert.equal(data.username, user.username)
+        assert.equal(user._id, data._id)
+        assert.equal(user.username, data.username)
+        assert.equal(user.createdAt, data.createdAt)
+        assert.equal(user.updatedAt, data.updatedAt)
 
         done()
       })

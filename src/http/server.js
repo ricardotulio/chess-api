@@ -1,6 +1,11 @@
 import express from 'express'
 import bodyParser from 'body-parser'
+import mongoose from 'mongoose'
+import bluebird from 'bluebird'
 import mapRoutes from './router'
+
+const MONGO_HOST = process.env.MONGO_HOST || 'mongo'
+const MONGO_PORT = process.env.MONGO_PORT || 27017
 
 const server = express()
 
@@ -14,6 +19,17 @@ server.use((req, res, next) => {
   next()
 })
 
-mapRoutes(server)
+const listen = (port, callback = () => {}) => {
+  const uri = `mongodb://${MONGO_HOST}:${MONGO_PORT}/chess`
+  const options = { promiseLibrary: bluebird }
 
-export default server
+  mongoose.connect(uri, options)
+    .then(() => {
+      mapRoutes(server)
+      server.listen(port, callback)
+    })
+}
+
+export default {
+  listen,
+}
