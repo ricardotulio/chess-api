@@ -7,13 +7,13 @@ node_js:
 
 env:
   - MONGODB_VERSION=3.4.2
-  - MONGODB_USER=travis
-  - MONGODB_PASS=test
 
 sevices:
   - mongodb
 
 before_install:
+  - export MONGODB_USER=chess
+  - export MONGODB_PASS=chess
   - wget http://fastdl.mongodb.org/linux/mongodb-linux-x86_64-$MONGODB_VERSION.tgz
   - tar xfz mongodb-linux-x86_64-$MONGODB_VERSION.tgz
   - export PATH=`pwd`/mongodb-linux-x86_64-$MONGODB_VERSION/bin:$PATH
