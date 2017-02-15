@@ -1,13 +1,17 @@
-language: node_js
 sudo: required
-sevices: mongodb
+dist: trusty
 
+language: node_js
 node_js:
   - "7.5"
+
+sevices:
+  - mongodb
 
 before_install:
   - npm install -g yarn
   - export MONGO_HOST=localhost
+  - sleep 15
 install:
   - yarn
 script:
