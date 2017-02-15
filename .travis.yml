@@ -9,11 +9,13 @@ sevices:
   - mongodb
 
 before_install:
-  - npm install -g yarn
   - export MONGO_HOST=localhost
+  - export MONGO_USER=travis
+  - export MONGO_PASS=test
   - sleep 15
+  - mongo chess --eval 'db.addUser("travis", "test");'
 install:
-  - yarn
+  - npm install
 script:
-  - yarn test
+  - npm test
   - eslint src/**
