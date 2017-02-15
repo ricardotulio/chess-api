@@ -20,7 +20,7 @@ before_install:
   - mkdir -p data/db
   - mongod --dbpath=data/db &
   - sleep 15
-  - mongo chess --eval 'db.addUser("travis", "test")'
+  - mongo chess --eval 'db.createUser("travis", "test")'
 install:
   - npm install
 script:
