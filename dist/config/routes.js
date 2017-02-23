@@ -10,14 +10,19 @@ var _user2 = _interopRequireDefault(_user);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var routes = [{
-  path: '/user/:userId',
-  method: 'get',
-  callback: _user2.default.get
-}, {
-  path: '/user',
-  method: 'post',
-  callback: _user2.default.post
-}];
+var routes = [];
+
+var addRoute = function addRoute(path, method, callback) {
+  routes.push({
+    type: 'Route',
+    path: path,
+    method: method,
+    callback: callback
+  });
+};
+
+addRoute('/user', 'get', _user2.default.getList);
+addRoute('/user/:userId', 'get', _user2.default.get);
+addRoute('/user', 'post', _user2.default.post);
 
 exports.default = routes;

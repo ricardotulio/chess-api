@@ -26,8 +26,10 @@ var _router2 = _interopRequireDefault(_router);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var MONGO_HOST = process.env.MONGO_HOST || 'mongo';
-var MONGO_PORT = process.env.MONGO_PORT || 27017;
+var MONGODB_HOST = process.env.MONGODB_HOST || 'mongo';
+var MONGODB_PORT = process.env.MONGODB_PORT || 27017;
+var MONGODB_USER = process.env.MONGODB_USER || 'chess';
+var MONGODB_PASS = process.env.MONGODB_PASS || 'chess';
 
 var server = (0, _express2.default)();
 
@@ -44,10 +46,12 @@ server.use(function (req, res, next) {
 var listen = function listen(port) {
   var callback = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : function () {};
 
-  var uri = 'mongodb://' + MONGO_HOST + ':' + MONGO_PORT + '/chess';
+  var uri = 'mongodb://' + MONGODB_USER + ':' + MONGODB_PASS + '@' + MONGODB_HOST + ':' + MONGODB_PORT + '/chess';
   var options = { promiseLibrary: _bluebird2.default };
 
-  _mongoose2.default.connect(uri, options).then(function () {
+  _mongoose2.default.connect(uri, options);
+
+  _mongoose2.default.connection.on('open', function () {
     (0, _router2.default)(server);
     server.listen(port, callback);
   });
