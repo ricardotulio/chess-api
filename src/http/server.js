@@ -25,7 +25,7 @@ const listen = (port, callback = () => {}) => {
   const uri = `mongodb://${MONGODB_USER}:${MONGODB_PASS}@${MONGODB_HOST}:${MONGODB_PORT}/chess`
   const options = { promiseLibrary: bluebird }
 
-  mongoose.connect(uri, options)
+  mongoose.createConnection(uri, options)
 
   mongoose.connection.on('open', () => {
     mapRoutes(server)
