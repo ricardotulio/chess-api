@@ -49,7 +49,7 @@ var listen = function listen(port) {
   var uri = 'mongodb://' + MONGODB_USER + ':' + MONGODB_PASS + '@' + MONGODB_HOST + ':' + MONGODB_PORT + '/chess';
   var options = { promiseLibrary: _bluebird2.default };
 
-  _mongoose2.default.connect(uri, options);
+  _mongoose2.default.createConnection(uri, options);
 
   _mongoose2.default.connection.on('open', function () {
     (0, _router2.default)(server);

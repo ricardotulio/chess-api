@@ -44,6 +44,8 @@
   "scripts": {
     "start": "node dist/app.js",
     "build": "babel src --out-dir dist",
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --recursive --require babel-polyfill --compilers js:babel-register test/**/*.test.js && istanbul-coveralls && rm -rf ./coverage && node ./node_modules/.bin/cucumber --compiler js:babel-register"
+    "pre-test": "",
+    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --recursive --require babel-polyfill --compilers js:babel-register test/**/*.test.js && istanbul-coveralls && rm -rf ./coverage && node ./node_modules/.bin/cucumber --compiler js:babel-register",
+    "pos-test": ""
   }
 }
